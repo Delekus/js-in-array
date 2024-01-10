@@ -11,20 +11,24 @@
 			color: red;
 			text-align: center;
 		}
+
 		.container {
 			display: flex;
 			justify-content: space-evenly;
 		}
+
 		@media (max-width:800px) {
 			.container {
 				flex-direction: column;
 				align-items: center;
 				gap: 20px;
 			}
+
 			button {
 				max-width: 300px;
 			}
 		}
+
 		button {
 			border: none;
 			outline: none;
@@ -35,12 +39,14 @@
 			font-size: 18px;
 			color: #fff;
 		}
+
 		button:hover {
 			cursor: pointer;
 			background-color: #fff;
 			color: #0d64f6;
 			outline: 2px solid #0d64f6;
 		}
+
 		button:active {
 			transform: scale(95%);
 		}
@@ -56,7 +62,6 @@
 	</div>
 
 
-
 	<script>
 		// Создаем пустой массив
 		let array = [];
@@ -68,8 +73,15 @@
 			// Запрашиваем пять значений
 			for (let i = 0; i < 5; i++) {
 				let value = prompt("Введите значение для массива");
-				// Добавляем значение в конец массива
-				array.push(value);
+				if (!value) {
+					//Если пустое, то ошибка и повтор ввода
+					alert("Вы не ввели значение. Попробуйте еще раз")
+					i--;
+				}
+				else {
+					// Добавляем значение в конец массива
+					array.push(value);
+				}
 			}
 			// Выводим массив в консоль для проверки
 			console.log(array);
@@ -87,32 +99,37 @@
 		function checkArray() {
 			// Запрашиваем значение
 			let value = prompt("Введите значение для проверки");
-			// Ищем индексы, на которых находится значение в массиве
-			let indexes = [];
-			for (let i = 0; i < array.length; i++) {
-				if (array[i] === value) {
-					// Добавляем индекс в массив indexes
-					indexes.push(i);
-				}
+			if (!value) {
+				alert("Вы не ввели значение. Попробуйте еще раз")
 			}
-			// Проверяем, есть ли хотя бы один индекс в массиве indexes
-			if (indexes.length > 0) {
-				//Создаем строку с индексами массива
-				let resultString = "";
-				for (let i = 0; i < indexes.length; i++) {
-					let element = String(indexes[i]);
-					resultString += element;
-					if (i < indexes.length - 1) {
-						resultString += "; "
+			else {
+				// Ищем индексы, на которых находится значение в массиве
+				let indexes = [];
+				for (let i = 0; i < array.length; i++) {
+					if (array[i] === value) {
+						// Добавляем индекс в массив indexes
+						indexes.push(i);
 					}
 				}
-				// Выводим сообщение с индексами
-				alert("Значение " + value + " есть в массиве на индексах: " + resultString);
-			} else {
-				// Добавляем значение в конец массива
-				array.push(value);
-				// Выводим сообщение о добавлении
-				alert("Значение " + value + " добавлено в конец массива");
+				// Проверяем, есть ли хотя бы один индекс в массиве indexes
+				if (indexes.length > 0) {
+					//Создаем строку с индексами массива
+					let resultString = "";
+					for (let i = 0; i < indexes.length; i++) {
+						let element = String(indexes[i]);
+						resultString += element;
+						if (i < indexes.length - 1) {
+							resultString += "; "
+						}
+					}
+					// Выводим сообщение с индексами
+					alert("Значение " + value + " есть в массиве на индексах: " + resultString);
+				} else {
+					// Добавляем значение в конец массива
+					array.push(value);
+					// Выводим сообщение о добавлении
+					alert("Значение " + value + " добавлено в конец массива");
+				}
 			}
 		}
 	</script>
